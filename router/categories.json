@@ -1,0 +1,53 @@
+{
+  "pattern_match_categories": {
+    "system": [
+      "Switch to local mode.",
+      "Use GPT-5.5.",
+      "Enable background mode.",
+      "Disable voice."
+    ],
+    "exit": [
+      "Sleep.",
+      "Good night JARVIS.",
+      "Restart yourself."
+    ]
+  },
+  "llm_classified_categories": {
+    "chat": [
+      "Explain MQTT.",
+      "Why is TCP slower than UDP?",
+      "How does CAN Bus work?",
+      "What do you think is the cleanest way to structure a Python router for intent classification?"
+    ],
+    "research": [
+      "Research silicon carbide MOSFETs.",
+      "Compare STM32 vs ESP32.",
+      "Latest NVIDIA research.",
+      "Look up the latest pricing for AWS IoT Core."
+    ],
+    "action": [
+      "Open KiCad.",
+      "Open Downloads folder.",
+      "Launch VS Code.",
+      "Close Chrome."
+    ],
+    "screen_context": [
+      "Explain this error.",
+      "Read this graph.",
+      "What am I looking at?",
+      "Is this PCB correct?"
+    ],
+    "memory_lookup": [
+      "Where is my resume?",
+      "What AWS services did I use?",
+      "Show my rocket notes.",
+      "Find PowerPulse documentation."
+    ],
+    "task_delegate": [
+      "Research Modbus TCP and create notes.",
+      "Open the PDF and summarize it.",
+      "Create a presentation from this report.",
+      "Read this datasheet and explain it."
+    ]
+  }
+}
