@@ -1,4 +1,28 @@
 """
+router/intent_types.py
+
+Defines all intents recognized by Personal JARVIS.
+
+Every module should import Intent from here instead of using raw strings.
+
+Author: Mayur Vaidya
+Project: Personal JARVIS
+"""
+
+from enum import Enum
+
+
+class Intent(Enum):
+    CHAT = "chat"
+    ACTION = "action"
+    RESEARCH = "research"
+    SCREEN_CONTEXT = "screen_context"
+    MEMORY_LOOKUP = "memory_lookup"
+    TASK_DELEGATE = "task_delegate"
+    SYSTEM = "system"
+    EXIT = "exit"
+
+"""
 intent_types.py
 
 Defines the categories the router classifies every incoming request into.
