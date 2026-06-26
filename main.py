@@ -21,10 +21,11 @@ def main():
             print("\nGoodbye!")
             break
 
-        intent = router.route(request)
+        plan = router.route(request)
 
-        print(f"\nDetected Intent : {intent.name}")
-
+        print("\nExecution Plan")
+        print("----------------------------")
+        print(plan)
 
 if __name__ == "__main__":
     main()

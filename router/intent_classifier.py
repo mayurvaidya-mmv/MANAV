@@ -9,7 +9,7 @@ import requests
 
 from config.settings import LOCAL_LLM_HOST
 from router.intent_types import Intent
-
+from ai.ai_manager import AIManager
 
 SYSTEM_PROMPT = """
 You are an intent classifier.

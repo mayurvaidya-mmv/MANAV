@@ -1,22 +1,34 @@
 """
 router/router.py
-
-Main routing module for Personal JARVIS.
 """
 
 from router.intent_classifier import IntentClassifier
+from router.planner import Planner
+from brain.command_parser import CommandParser
+
+from hands.actions import ActionDispatcher
 
 
 class Router:
 
     def __init__(self):
+
         self.classifier = IntentClassifier()
 
+        self.planner = Planner()
+
+        self.parser = CommandParser()
+
+        self.dispatcher = ActionDispatcher()
+
     def route(self, request: str):
-        """
-        Classify the user's request and return the detected intent.
-        """
 
         intent = self.classifier.classify(request)
 
-        return intent
+        plan = self.planner.create_plan(intent, request)
+
+        plan = self.parser.parse(plan)
+
+        self.dispatcher.dispatch(plan)
+
+        return plan
