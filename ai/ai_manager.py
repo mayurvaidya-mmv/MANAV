@@ -1,18 +1,26 @@
+"""
+AI Manager
+
+Central interface to the local LLM.
+"""
+
 import requests
 
 from config.settings import LOCAL_LLM_HOST
 from ai.prompts import INTENT_CLASSIFIER_PROMPT
-
+from knowledge.parser import KnowledgeParser
 
 class AIManager:
 
     def __init__(self):
 
-        self.url = f"{LOCAL_LLM_HOST}/chat/completions"
+        self.url = f"{LOCAL_LLM_HOST}/v1/chat/completions"
 
-        self.model = "deepseek-r1-0528-qwen3-8b"
+        from config.settings import LOCAL_MODEL
+        self.model = LOCAL_MODEL
+        self.parser = KnowledgeParser()
 
-    def classify_intent(self, request):
+    def _chat(self, system_prompt: str, user_prompt: str):
 
         response = requests.post(
 
@@ -26,12 +34,12 @@ class AIManager:
 
                     {
                         "role": "system",
-                        "content": INTENT_CLASSIFIER_PROMPT
+                        "content": system_prompt
                     },
 
                     {
                         "role": "user",
-                        "content": request
+                        "content": user_prompt
                     }
 
                 ],
@@ -42,13 +50,40 @@ class AIManager:
 
         )
 
-        if not response.ok:
-            print("\n========== LM STUDIO ERROR ==========")
-            print(response.status_code)
-            print(response.text)
-            print("=====================================\n")
-            response.raise_for_status()
+        response.raise_for_status()
 
         data = response.json()
 
-        return data["choices"][0]["message"]["content"].strip().lower()
+        print("\n========== LM STUDIO RESPONSE ==========")
+        print(data)
+        print("========================================\n")
+
+        return data["choices"][0]["message"]["content"].strip()
+
+    def classify_intent(self, request):
+
+        return self._chat(
+            INTENT_CLASSIFIER_PROMPT,
+            request
+        ).lower()
+
+    def summarize(self, text):
+
+        system_prompt = """
+You are an engineering research assistant.
+
+Summarize the provided content.
+
+Output:
+
+A concise engineering summary.
+"""
+
+        summary = self._chat(
+
+            system_prompt,
+
+            text[:4000]      # Prevent huge prompts
+        )
+
+        return self.parser.parse_summary(summary)

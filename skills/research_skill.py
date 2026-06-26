@@ -1,31 +1,21 @@
 """
 Research Skill
 
-Currently a placeholder.
-
-Next ticket will connect it
-to Perplexity or Browser.
+Delegates research to the Research Manager.
 """
 
 from skills.base_skill import BaseSkill
+from research.research_manager import ResearchManager
 
 
 class ResearchSkill(BaseSkill):
+
+    def __init__(self):
+
+        self.manager = ResearchManager()
 
     def execute(self, plan: dict):
 
         query = plan["arguments"]["query"]
 
-        print()
-
-        print("=" * 50)
-
-        print("Research Skill")
-
-        print(f"Searching for: {query}")
-
-        print("=" * 50)
-
-        print()
-
-        # Implementation next ticket
+        self.manager.research(query)
