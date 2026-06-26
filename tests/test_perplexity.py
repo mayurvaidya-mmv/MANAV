@@ -17,6 +17,16 @@ browser.waits.seconds(1)
 
 browser.press("Enter")
 
-browser.waits.seconds(20)
+print("Waiting for answer...")
+
+browser.waits.seconds(15)
+
+text = browser.read()
 
 browser.close()
+
+print("\n" + "=" * 70)
+
+print(text[:3000])
+
+print("=" * 70)
