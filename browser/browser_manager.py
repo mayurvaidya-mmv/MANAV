@@ -51,3 +51,6 @@ class BrowserManager:
     def type(self, selector: str, text: str):
 
         self.actions.type(selector, text)
+    def press(self, key: str):
+
+        self.actions.press(key)

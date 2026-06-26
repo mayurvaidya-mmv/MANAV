@@ -20,3 +20,6 @@ class BrowserActions:
     def click(self, selector):
 
         self.page.click(selector)
+    def press(self, key: str):
+
+        self.page.keyboard.press(key)

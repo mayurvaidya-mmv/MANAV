@@ -8,14 +8,15 @@ browser.open("https://www.perplexity.ai")
 
 browser.waits.seconds(5)
 
-# Temporary selector
-selector = "#ask-input"
-
 browser.type(
-    selector,
+    "#ask-input",
     "Research MQTT"
 )
 
-browser.waits.seconds(10)
+browser.waits.seconds(1)
+
+browser.press("Enter")
+
+browser.waits.seconds(20)
 
 browser.close()
