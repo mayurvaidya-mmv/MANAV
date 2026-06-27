@@ -1,22 +1,14 @@
 """
 Perplexity Research Provider
 
-Uses Playwright + Local LLM
-to perform autonomous research.
+Knows how to interact with
+Perplexity AI.
 """
-
-from browser.browser_manager import BrowserManager
-from ai.ai_manager import AIManager
 
 
 class PerplexityProvider:
 
-    def __init__(self):
-
-        self.browser = BrowserManager()
-        self.ai = AIManager()
-
-    def search(self, query: str):
+    def search(self, browser, query: str):
 
         print()
         print("=" * 50)
@@ -24,38 +16,19 @@ class PerplexityProvider:
         print(f"Searching: {query}")
         print("=" * 50)
 
-        # Launch browser
-        self.browser.launch()
+        browser.open("https://www.perplexity.ai")
 
-        # Open Perplexity
-        self.browser.open("https://www.perplexity.ai")
+        browser.waits.seconds(5)
 
-        # Give the page time to load
-        self.browser.waits.seconds(5)
-
-        # Type the research query
-        self.browser.type(
+        browser.type(
             "#ask-input",
             query
         )
 
-        self.browser.waits.seconds(1)
+        browser.waits.seconds(1)
 
-        # Submit
-        self.browser.press("Enter")
+        browser.press("Enter")
 
         print("Waiting for research...")
 
-        # Temporary wait
-        self.browser.waits.seconds(15)
-
-        # Read the webpage
-        text = self.browser.read()
-
-        # Close browser
-        self.browser.close()
-
-        # Summarize locally
-        result = self.ai.summarize(text)
-
-        return result
+        browser.waits.seconds(15)
