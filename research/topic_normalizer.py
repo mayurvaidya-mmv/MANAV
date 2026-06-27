@@ -1,9 +1,8 @@
 """
 Topic Normalizer
-
-Converts user queries into
-consistent topic names.
 """
+
+from knowledge.aliases import ALIASES
 
 
 class TopicNormalizer:
@@ -15,6 +14,8 @@ class TopicNormalizer:
 
         if query.startswith("research"):
 
-            query = query.replace("research", "", 1)
+            query = query[len("research"):].strip()
 
-        return query.strip()
+        query = " ".join(query.split())
+
+        return ALIASES.get(query, query)

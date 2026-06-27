@@ -13,6 +13,4 @@ class PageReader:
 
     def read(self):
 
-        text = self.page.locator("body").inner_text()
-
-        return text
+        return self.page.locator("body").inner_text()

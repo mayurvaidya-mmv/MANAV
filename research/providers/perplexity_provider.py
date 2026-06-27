@@ -26,7 +26,7 @@ class PerplexityProvider:
 
         browser.open("https://www.perplexity.ai")
 
-        browser.waits.seconds(5)
+        browser.waits.page_stable()
 
         browser.type(
             "#ask-input",

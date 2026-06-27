@@ -47,6 +47,12 @@ class ResearchEngine:
         # Summarize
         result = self.ai.summarize(text)
 
+        if not result.summary.strip():
+
+            print("Research produced an empty summary. Nothing was saved.")
+
+            return result
+
         # Override AI topic with normalized topic
         result.topic = topic
 
