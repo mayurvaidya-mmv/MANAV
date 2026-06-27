@@ -1,6 +1,6 @@
 {
-    "topic": "MQTT",
-    "summary": "MQTT is a lightweight publish-subscribe messaging protocol.",
+    "topic": "mqtt",
+    "summary": "MQTT (Message Queuing Telemetry Transport) is a lightweight publish-subscribe messaging protocol designed for constrained devices and unreliable networks, particularly IoT applications. It uses a broker-based model to decouple publishers from subscribers, minimizing overhead. Key features include Quality of Service levels, topic hierarchies with wildcards, retained messages, and Last Will/ Testament notifications. Security relies on underlying transport (like TLS) but requires proper configuration including authentication and access controls. MQTT is highly scalable through clustering or edge patterns, though performance depends on broker/client implementation and message settings like QoS and size. Advanced research explores security enhancements, intrusion detection using machine learning for traffic analysis, and optimizations for stricter real-time requirements.",
     "tags": [],
     "source": "Perplexity",
     "created": "2026-06-27"

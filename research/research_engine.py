@@ -11,6 +11,8 @@ from ai.ai_manager import AIManager
 from knowledge.models import Knowledge
 from memory.memory_manager import MemoryManager
 
+from research.topic_normalizer import TopicNormalizer
+
 
 class ResearchEngine:
 
@@ -24,6 +26,9 @@ class ResearchEngine:
 
     def execute(self, provider, query):
 
+        # Normalize topic
+        topic = TopicNormalizer.normalize(query)
+
         # Launch browser
         self.browser.launch()
 
@@ -33,7 +38,7 @@ class ResearchEngine:
             query
         )
 
-        # Read page
+        # Read webpage
         text = self.browser.read()
 
         # Close browser
@@ -42,7 +47,10 @@ class ResearchEngine:
         # Summarize
         result = self.ai.summarize(text)
 
-        # Save into long-term memory
+        # Override AI topic with normalized topic
+        result.topic = topic
+
+        # Save to memory
         knowledge = Knowledge(
 
             topic=result.topic,

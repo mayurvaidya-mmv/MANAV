@@ -35,15 +35,38 @@ class MemoryManager:
         ) as file:
 
             json.dump(
-
                 asdict(knowledge),
-
                 file,
-
                 indent=4,
-
                 ensure_ascii=False
-
             )
 
         return filepath
+
+    def load(self, topic: str):
+
+        filename = topic.lower().replace(" ", "_") + ".json"
+
+        filepath = self.memory_path / filename
+
+        if not filepath.exists():
+
+            return None
+
+        with open(
+            filepath,
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            data = json.load(file)
+
+        return Knowledge(**data)
+    
+    def exists(self, topic: str):
+
+        filename = topic.lower().replace(" ", "_") + ".json"
+
+        filepath = self.memory_path / filename
+
+        return filepath.exists()

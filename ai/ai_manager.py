@@ -96,11 +96,27 @@ class AIManager:
         system_prompt = """
 You are an engineering research assistant.
 
-Summarize the provided content.
+Analyze the provided research.
 
-Output:
+Your response MUST follow this format exactly.
 
-A concise engineering summary.
+Topic: <ONE SHORT TOPIC>
+
+Summary:
+<concise engineering summary>
+
+Example:
+
+Topic: MQTT
+
+Summary:
+MQTT is a lightweight publish-subscribe protocol designed for IoT systems.
+
+Rules:
+- Topic must contain only the main subject.
+- Never leave Topic empty.
+- Never omit Topic.
+- Do not add any extra headings.
 """
 
         summary = self._chat(

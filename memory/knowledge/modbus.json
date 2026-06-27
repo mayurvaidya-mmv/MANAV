@@ -1,0 +1,7 @@
+{
+    "topic": "MODBUS",
+    "summary": "Modbus is a widely adopted industrial protocol initially designed for serial communication but now commonly used over TCP/IP networks (including Modbus TCP). It offers simplicity and interoperability, making it popular in automation devices, but lacks inherent security features like authentication or encryption. This creates vulnerabilities in modern OT environments. Current research focuses heavily on enhancing its security through areas such as intrusion detection using specialized datasets, defense-in-depth strategies including segmentation and encrypted tunneling, while still maintaining compatibility for industrial integration.",
+    "tags": [],
+    "source": "Perplexity",
+    "created": "2026-06-27"
+}
