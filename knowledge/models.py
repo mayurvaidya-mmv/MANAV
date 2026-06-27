@@ -1,11 +1,16 @@
 """
-knowledge/models.py
+Knowledge Models
 
-Domain models used by MANAS.
+Models used by MANAS.
 """
 
 from dataclasses import dataclass, field
+from datetime import datetime
 
+
+# -------------------------------------------------------------------
+# Temporary result returned by the AI
+# -------------------------------------------------------------------
 
 @dataclass
 class ResearchResult:
@@ -14,10 +19,20 @@ class ResearchResult:
 
     summary: str
 
-    key_points: list[str] = field(default_factory=list)
 
-    applications: list[str] = field(default_factory=list)
+# -------------------------------------------------------------------
+# Persistent knowledge stored in memory
+# -------------------------------------------------------------------
 
-    references: list[str] = field(default_factory=list)
+@dataclass
+class Knowledge:
 
-    next_topics: list[str] = field(default_factory=list)
+    topic: str
+
+    summary: str
+
+    tags: list = field(default_factory=list)
+
+    source: str = "Perplexity"
+
+    created: str = datetime.now().strftime("%Y-%m-%d")
