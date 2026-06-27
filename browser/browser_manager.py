@@ -2,7 +2,7 @@
 High-level Browser Manager.
 """
 
-from email.mime import text
+from config.settings import DEBUG
 
 from browser.playwright_engine import PlaywrightEngine
 from browser.actions import BrowserActions
@@ -17,7 +17,9 @@ class BrowserManager:
         self.engine = PlaywrightEngine()
 
         self.actions = None
+
         self.waits = None
+
         self.reader = None
 
     def launch(self):
@@ -30,13 +32,17 @@ class BrowserManager:
 
         self.reader = PageReader(self.engine.page)
 
-        print("Browser launched.")
+        if DEBUG:
+
+            print("Browser launched.")
 
     def open(self, url):
 
         self.engine.goto(url)
 
-        print(f"Opened {url}")
+        if DEBUG:
+
+            print(f"Opened {url}")
 
     def read(self):
 
@@ -46,11 +52,14 @@ class BrowserManager:
 
         self.engine.close()
 
-        print("Browser closed.")
-        
+        if DEBUG:
+
+            print("Browser closed.")
+
     def type(self, selector: str, text: str):
 
         self.actions.type(selector, text)
+
     def press(self, key: str):
 
         self.actions.press(key)

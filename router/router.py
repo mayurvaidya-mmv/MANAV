@@ -29,6 +29,6 @@ class Router:
 
         plan = self.parser.parse(plan)
 
-        self.dispatcher.dispatch(plan)
+        result = self.dispatcher.dispatch(plan)
 
-        return plan
+        return result

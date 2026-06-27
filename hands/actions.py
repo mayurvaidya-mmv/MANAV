@@ -22,14 +22,12 @@ class ActionDispatcher:
 
         if task == "OPEN_APPLICATION":
 
-            self.application.execute(plan)
-
-            return
+            return self.application.execute(plan)
 
         if task == "WEB_RESEARCH":
 
-            self.research.execute(plan)
-
-            return
+            return self.research.execute(plan)
 
         print(f"Unknown task: {task}")
+
+        return None

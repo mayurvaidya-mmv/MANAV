@@ -12,4 +12,4 @@ LOCAL_LLM_HOST = "http://127.0.0.1:1234"
 # Model name (will become configurable later)
 LOCAL_MODEL = "deepseek-r1-0528-qwen3-8b"
 
-DEBUG = True
+DEBUG = False

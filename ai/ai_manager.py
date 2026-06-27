@@ -7,8 +7,13 @@ Central interface to the local LLM.
 import requests
 
 from config.settings import LOCAL_LLM_HOST
+from config.settings import LOCAL_MODEL
+from config.settings import DEBUG
+
 from ai.prompts import INTENT_CLASSIFIER_PROMPT
 from knowledge.parser import KnowledgeParser
+from core.logger import Logger
+
 
 class AIManager:
 
@@ -16,9 +21,11 @@ class AIManager:
 
         self.url = f"{LOCAL_LLM_HOST}/v1/chat/completions"
 
-        from config.settings import LOCAL_MODEL
         self.model = LOCAL_MODEL
+
         self.parser = KnowledgeParser()
+
+        self.logger = Logger()
 
     def _chat(self, system_prompt: str, user_prompt: str):
 
@@ -54,17 +61,34 @@ class AIManager:
 
         data = response.json()
 
-        print("\n========== LM STUDIO RESPONSE ==========")
-        print(data)
-        print("========================================\n")
+        self.logger.log("LM Studio request completed.")
+
+        if DEBUG:
+
+            print()
+
+            print("=" * 50)
+
+            print("LM STUDIO RESPONSE")
+
+            print(data)
+
+            print("=" * 50)
+
+            print()
+
+        self.logger.log("LLM response parsed.")
 
         return data["choices"][0]["message"]["content"].strip()
 
     def classify_intent(self, request):
 
         return self._chat(
+
             INTENT_CLASSIFIER_PROMPT,
+
             request
+
         ).lower()
 
     def summarize(self, text):
@@ -83,7 +107,8 @@ A concise engineering summary.
 
             system_prompt,
 
-            text[:4000]      # Prevent huge prompts
+            text[:4000]
+
         )
 
         return self.parser.parse_summary(summary)

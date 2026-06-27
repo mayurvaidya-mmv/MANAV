@@ -5,16 +5,24 @@ Knows how to interact with
 Perplexity AI.
 """
 
+from config.settings import DEBUG
+
 
 class PerplexityProvider:
 
     def search(self, browser, query: str):
 
-        print()
-        print("=" * 50)
-        print("Perplexity Provider")
-        print(f"Searching: {query}")
-        print("=" * 50)
+        if DEBUG:
+
+            print()
+            print("=" * 50)
+            print("Perplexity Provider")
+            print(f"Searching: {query}")
+            print("=" * 50)
+
+        else:
+
+            print("\nResearching...")
 
         browser.open("https://www.perplexity.ai")
 
@@ -29,6 +37,7 @@ class PerplexityProvider:
 
         browser.press("Enter")
 
-        print("Waiting for research...")
+        if DEBUG:
+            print("Waiting for research...")
 
         browser.waits.seconds(15)
