@@ -18,4 +18,6 @@ class ResearchSkill(BaseSkill):
 
         query = plan["arguments"]["query"]
 
-        self.manager.research(query)
+        result = self.manager.research(query)
+
+        return result

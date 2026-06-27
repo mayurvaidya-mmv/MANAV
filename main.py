@@ -6,7 +6,7 @@ def main():
     router = Router()
 
     print("=" * 50)
-    print("Personal JARVIS v0.1")
+    print("MANAS v0.1")
     print("Type 'quit' to exit.")
     print("=" * 50)
 
@@ -21,11 +21,29 @@ def main():
             print("\nGoodbye!")
             break
 
-        plan = router.route(request)
+        result = router.route(request)
 
-        print("\nExecution Plan")
-        print("----------------------------")
-        print(plan)
+        # ResearchResult
+        if hasattr(result, "summary"):
+
+            print("\n" + "=" * 70)
+
+            print("Topic:")
+            print(result.topic)
+
+            print()
+
+            print("Summary:")
+            print(result.summary)
+
+            print("=" * 70)
+
+        else:
+
+            print("\nExecution Plan")
+            print("-" * 30)
+            print(result)
+
 
 if __name__ == "__main__":
     main()

@@ -16,4 +16,6 @@ class ResearchManager:
 
     def research(self, query: str):
 
-        self.provider.search(query)
+        result = self.provider.search(query)
+
+        return result
