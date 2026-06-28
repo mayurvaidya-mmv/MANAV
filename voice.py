@@ -2,29 +2,32 @@
 Voice Interface for MANAS
 """
 
-from router.router import Router
+from core.application import MANAS
+from core.config import Config
 
 from voice.audio_recorder import AudioRecorder
 from voice.whisper_recognizer import WhisperRecognizer
 from voice.piper_synthesizer import PiperSynthesizer
 
+
 def main():
 
-    router = Router()
+    # Boot MANAS
+    app = MANAS()
 
+    app.boot()
+
+    # Voice components
     recorder = AudioRecorder()
 
-    from core.config import Config
+    recognizer = WhisperRecognizer()
 
-    config = Config()
-
-    recognizer = WhisperRecognizer(config)
-    
     speaker = PiperSynthesizer()
 
     print("=" * 60)
     print("🎤 MANAS Voice Assistant v0.1")
     print("=" * 60)
+
     while True:
 
         choice = input(
@@ -43,7 +46,7 @@ def main():
 
         print()
 
-        print(f"\n🗣️ You said: {command}")
+        print(f"🗣️ You said: {command}")
 
         if not command:
 
@@ -58,7 +61,6 @@ def main():
 
             continue
 
-        
         if command.lower() in (
 
             "quit",
@@ -73,12 +75,11 @@ def main():
 
         ):
 
-   
             print("\nGoodbye!")
 
             break
 
-        result = router.route(command)
+        result = app.process(command)
 
         if result is not None:
 
@@ -89,6 +90,7 @@ def main():
             print(f"Topic:\n{result.topic}\n")
 
             print(f"Summary:\n{result.summary}")
+
             speaker.speak(result.summary)
 
             print("=" * 70)

@@ -61,7 +61,7 @@ class AIManager:
 
         data = response.json()
 
-        self.logger.log("LM Studio request completed.")
+        self.logger.info("LM Studio request completed.")
 
         if DEBUG:
 
@@ -77,7 +77,7 @@ class AIManager:
 
             print()
 
-        self.logger.log("LLM response parsed.")
+        self.logger.info("LLM response parsed.")
 
         return data["choices"][0]["message"]["content"].strip()
 

@@ -5,7 +5,7 @@ Only non-secret configuration belongs here.
 
 Secrets will eventually move to .env
 """
-from core.config import Config
+
 
 # LM Studio Server (Base URL only)
 LOCAL_LLM_HOST = "http://127.0.0.1:1234"

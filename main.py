@@ -1,12 +1,12 @@
 from core import runtime
-from core.runtime import Runtime
+from core.application import MANAS
 from core.banner import print_banner
 
 
 def main():
 
-    runtime = Runtime()
-    runtime.boot()
+    app = MANAS()
+    app.boot()
 
     print_banner()
     print("Type 'quit' to exit.")
@@ -22,7 +22,7 @@ def main():
             print("\nGoodbye!")
             break
 
-        result = runtime.process(request)
+        result = app.process(request)
 
         # ResearchResult
         if hasattr(result, "summary"):
