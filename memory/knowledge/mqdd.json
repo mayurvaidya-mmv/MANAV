@@ -1,0 +1,7 @@
+{
+    "topic": "mqdd",
+    "summary": "MQDD is a pre-trained multimodal model designed for duplicate question detection in software engineering domains, utilizing both textual and source code inputs with the Longformer architecture to improve search efficiency on Q&A platforms.",
+    "tags": [],
+    "source": "Perplexity",
+    "created": "2026-06-28"
+}

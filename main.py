@@ -1,14 +1,15 @@
-from router.router import Router
+from core import runtime
+from core.runtime import Runtime
+from core.banner import print_banner
 
 
 def main():
 
-    router = Router()
+    runtime = Runtime()
+    runtime.boot()
 
-    print("=" * 50)
-    print("MANAS v0.1")
+    print_banner()
     print("Type 'quit' to exit.")
-    print("=" * 50)
 
     while True:
 
@@ -21,7 +22,7 @@ def main():
             print("\nGoodbye!")
             break
 
-        result = router.route(request)
+        result = runtime.process(request)
 
         # ResearchResult
         if hasattr(result, "summary"):

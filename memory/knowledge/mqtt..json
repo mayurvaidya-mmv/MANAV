@@ -1,0 +1,7 @@
+{
+    "topic": "mqtt.",
+    "summary": "MQTT is a lightweight publish-subscribe messaging protocol designed for efficient communication in low-bandwidth, high-latency environments, commonly used in IoT systems due to its resource efficiency and support for scalable device networks.",
+    "tags": [],
+    "source": "Perplexity",
+    "created": "2026-06-28"
+}
