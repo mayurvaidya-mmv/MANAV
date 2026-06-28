@@ -40,3 +40,7 @@
 [19:55:36] LLM response parsed.
 [19:56:19] LM Studio request completed.
 [19:56:19] LLM response parsed.
+[22:13:39] [INFO] Logger test
+[22:13:39] [WARNING] Warning test
+[22:13:39] [ERROR] Error test
+[22:13:39] [DEBUG] Debug test
