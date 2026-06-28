@@ -14,7 +14,12 @@ def main():
 
     recorder = AudioRecorder()
 
-    recognizer = WhisperRecognizer()
+    from core.config import Config
+
+    config = Config()
+
+    recognizer = WhisperRecognizer(config)
+    
     speaker = PiperSynthesizer()
 
     print("=" * 60)

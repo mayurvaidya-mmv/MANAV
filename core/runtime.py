@@ -5,9 +5,12 @@ Boots all MANAS services.
 """
 
 from router.router import Router
+
 from core.services import ServiceRegistry
 from core.events import EventBus
 from core.logger import Logger
+from core.config import Config
+
 
 class Runtime:
 
@@ -16,20 +19,30 @@ class Runtime:
         self.services = ServiceRegistry()
 
     def boot(self):
+
+        print("Booting Runtime...\n")
+
+        # Logger
         logger = Logger()
 
         self.services.register(
-
             "logger",
-
             logger
-
         )
 
         logger.info("Logger initialized.")
 
+        # Configuration
+        config = Config()
 
-        print("Booting Runtime...\n")
+        self.services.register(
+            "config",
+            config
+        )
+
+        logger.info("Configuration initialized.")
+
+        # Event Bus
         event_bus = EventBus()
 
         self.services.register(
@@ -39,7 +52,7 @@ class Runtime:
 
         logger.info("Event Bus initialized.")
 
-
+        # Router
         router = Router()
 
         self.services.register(

@@ -7,6 +7,7 @@ Offline speech recognition using Faster-Whisper.
 from faster_whisper import WhisperModel
 
 from voice.speech_recognizer import SpeechRecognizer
+from core.config import Config
 
 
 class WhisperRecognizer(SpeechRecognizer):
@@ -15,13 +16,15 @@ class WhisperRecognizer(SpeechRecognizer):
 
         print("Loading Whisper model...")
 
+        config = Config()
+
         self.model = WhisperModel(
 
-            "base",
+            config.whisper_model,
 
-            device="cpu",
+            device=config.whisper_device,
 
-            compute_type="int8"
+            compute_type=config.whisper_compute_type
 
         )
 
