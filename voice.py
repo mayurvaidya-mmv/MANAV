@@ -3,7 +3,7 @@ Voice Interface for MANAS
 """
 
 from core.application import MANAS
-from core.config import Config
+
 
 from voice.audio_recorder import AudioRecorder
 from voice.whisper_recognizer import WhisperRecognizer
@@ -28,73 +28,75 @@ def main():
     print("🎤 MANAS Voice Assistant v0.1")
     print("=" * 60)
 
-    while True:
+    try:
 
-        choice = input(
-            "\nPress ENTER to speak (or type 'quit'): "
-        ).strip().lower()
+        while True:
 
-        if choice == "quit":
+            print("\n🎤 Listening...")
 
-            print("\nGoodbye!")
+            audio_file = recorder.record()
 
-            break
 
-        audio_file = recorder.record()
-
-        command = recognizer.transcribe(audio_file).strip()
-
-        print()
-
-        print(f"🗣️ You said: {command}")
-
-        if not command:
-
-            print("\nI didn't hear anything.")
-
-            continue
-
-        # Whisper sometimes returns only punctuation
-        if command.replace(".", "").strip() == "":
-
-            print("\nSpeech not recognized.")
-
-            continue
-
-        if command.lower() in (
-
-            "quit",
-
-            "exit",
-
-            "stop",
-
-            "goodbye",
-
-            "bye"
-
-        ):
-
-            print("\nGoodbye!")
-
-            break
-
-        result = app.process(command)
-
-        if result is not None:
+            command = recognizer.transcribe(audio_file).strip()
 
             print()
 
-            print("=" * 70)
+            print(f"🗣️ You said: {command}")
 
-            print(f"Topic:\n{result.topic}\n")
+            if not command:
 
-            print(f"Summary:\n{result.summary}")
+                print("\nI didn't hear anything.")
 
-            speaker.speak(result.summary)
+                continue
 
-            print("=" * 70)
+            # Whisper sometimes returns only punctuation
+            if command.replace(".", "").strip() == "":
 
+                print("\nSpeech not recognized.")
+
+                continue
+
+            if command.lower() in (
+
+                "quit",
+
+                "exit",
+
+                "stop",
+
+                "goodbye",
+
+                "bye"
+
+            ):
+
+                print("\nGoodbye!")
+
+                break
+
+            result = app.process(command)
+
+            if result is not None:
+
+                print()
+
+                print("=" * 70)
+
+                print(f"Topic:\n{result.topic}\n")
+
+                print(f"Summary:\n{result.summary}")
+
+                speaker.speak(result.summary)
+
+                print("=" * 70)
+
+    except KeyboardInterrupt:
+
+        print("\n\nStopping MANAS...")
+
+        speaker.speak("Goodbye!")
+
+        print("Goodbye!")
 
 if __name__ == "__main__":
 
