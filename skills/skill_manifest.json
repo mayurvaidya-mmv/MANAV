@@ -1,0 +1,36 @@
+{
+  "application": {
+    "class": "ApplicationSkill",
+    "file": "application_skill.py",
+    "description": "Open and launch applications on Windows",
+    "supported_intents": [
+      "ACTION"
+    ],
+    "supported_tasks": [
+      "OPEN_APPLICATION"
+    ],
+    "required_inputs": [
+      "application"
+    ],
+    "output_type": "dict",
+    "auto_generated": false,
+    "version": "1.0"
+  },
+  "research": {
+    "class": "ResearchSkill",
+    "file": "research_skill.py",
+    "description": "Perform web research using Perplexity and local AI",
+    "supported_intents": [
+      "RESEARCH"
+    ],
+    "supported_tasks": [
+      "WEB_RESEARCH"
+    ],
+    "required_inputs": [
+      "query"
+    ],
+    "output_type": "ResearchResult",
+    "auto_generated": false,
+    "version": "1.0"
+  }
+}
