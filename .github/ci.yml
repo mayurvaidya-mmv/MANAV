@@ -3,11 +3,11 @@ name: MANAS CI
 on:
   push:
     branches:
-      - agent-v4
+      - approach-b
 
   pull_request:
     branches:
-      - agent-v4
+      - approach-b
 
 jobs:
   build:
