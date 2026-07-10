@@ -6,38 +6,18 @@ Creates an execution plan using the Skill Registry.
 
 from router.intent_types import Intent
 
-from core.skill_registry import SkillRegistry
-
-from skills.research_skill import ResearchSkill
-from skills.application_skill import ApplicationSkill
-
 
 class Planner:
 
-    def __init__(self):
+    def __init__(self, services):
 
-        self.registry = SkillRegistry()
-
-        #
-        # Temporary manual registration.
-        # Auto-registration comes in later versions.
-        #
-
-        self.registry.register(
-            ResearchSkill()
-        )
-
-        self.registry.register(
-            ApplicationSkill()
+        self.registry = services.get(
+            "skill_registry"
         )
 
     def create_plan(self, intent: Intent, request: str):
 
         request = request.strip()
-
-        #
-        # Find the skill supporting this intent.
-        #
 
         selected_skill = None
 
@@ -51,10 +31,6 @@ class Planner:
 
                 break
 
-        #
-        # No matching skill
-        #
-
         if selected_skill is None:
 
             return {
@@ -63,28 +39,18 @@ class Planner:
                 "arguments": {}
             }
 
-        #
-        # First supported task
-        #
-
         task = selected_skill.supported_tasks[0]
-
-        #
-        # Build arguments
-        #
 
         arguments = {}
 
         if task == "OPEN_APPLICATION":
 
-            application = (
+            arguments["application"] = (
                 request
                 .replace("open", "")
                 .strip()
                 .lower()
             )
-
-            arguments["application"] = application
 
         elif task == "WEB_RESEARCH":
 

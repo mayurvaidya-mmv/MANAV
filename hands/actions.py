@@ -4,41 +4,18 @@ Action Dispatcher
 Delegates execution through the Skill Registry.
 """
 
-from core.skill_registry import SkillRegistry
-
-from skills.application_skill import ApplicationSkill
-from skills.research_skill import ResearchSkill
-
 
 class ActionDispatcher:
 
-    def __init__(self):
+    def __init__(self, services):
 
-        self.registry = SkillRegistry()
-
-        #
-        # Temporary manual registration.
-        #
-        # Auto-discovery and manifest loading
-        # will be implemented in later versions.
-        #
-
-        self.registry.register(
-            ResearchSkill()
-        )
-
-        self.registry.register(
-            ApplicationSkill()
+        self.registry = services.get(
+            "skill_registry"
         )
 
     def dispatch(self, plan):
 
         task = plan["task"]
-
-        #
-        # Search for the skill that supports
-        # this task.
-        #
 
         for skill in self.registry.all_skills().values():
 

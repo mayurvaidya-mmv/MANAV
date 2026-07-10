@@ -11,21 +11,30 @@ from hands.actions import ActionDispatcher
 
 class Router:
 
-    def __init__(self):
+    def __init__(self, services):
+
+        self.services = services
 
         self.classifier = IntentClassifier()
 
-        self.planner = Planner()
+        self.planner = Planner(
+            services
+        )
 
         self.parser = CommandParser()
 
-        self.dispatcher = ActionDispatcher()
+        self.dispatcher = ActionDispatcher(
+            services
+        )
 
     def route(self, request: str):
 
         intent = self.classifier.classify(request)
 
-        plan = self.planner.create_plan(intent, request)
+        plan = self.planner.create_plan(
+            intent,
+            request
+        )
 
         plan = self.parser.parse(plan)
 
