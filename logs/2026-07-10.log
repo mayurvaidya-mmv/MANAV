@@ -26,3 +26,12 @@
 [16:46:32] [INFO] Runtime Ready.
 [16:47:06] [INFO] LM Studio request completed.
 [16:47:06] [INFO] LLM response parsed.
+[16:57:01] [INFO] Logger initialized.
+[16:57:01] [INFO] Configuration initialized.
+[16:57:01] [INFO] Event Bus initialized.
+[16:57:01] [INFO] Router initialized.
+[16:57:01] [INFO] Runtime Ready.
+[16:57:32] [INFO] LM Studio request completed.
+[16:57:32] [INFO] LLM response parsed.
+[16:58:58] [INFO] LM Studio request completed.
+[16:58:58] [INFO] LLM response parsed.
