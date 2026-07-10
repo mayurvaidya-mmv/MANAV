@@ -35,3 +35,14 @@
 [16:57:32] [INFO] LLM response parsed.
 [16:58:58] [INFO] LM Studio request completed.
 [16:58:58] [INFO] LLM response parsed.
+[17:11:07] [INFO] Logger initialized.
+[17:11:07] [INFO] Configuration initialized.
+[17:11:07] [INFO] Event Bus initialized.
+[17:11:07] [INFO] Router initialized.
+[17:11:07] [INFO] Runtime Ready.
+[17:11:33] [INFO] LM Studio request completed.
+[17:11:33] [INFO] LLM response parsed.
+[17:12:07] [INFO] LM Studio request completed.
+[17:12:07] [INFO] LLM response parsed.
+[17:13:01] [INFO] LM Studio request completed.
+[17:13:01] [INFO] LLM response parsed.
