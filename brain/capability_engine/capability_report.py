@@ -19,4 +19,8 @@ class CapabilityReport:
 
     estimated_complexity: str = "Unknown"
 
+    dependencies: List[str] = field(default_factory=list)
+
+    permissions: List[str] = field(default_factory=list)
+
     status: str = "UNKNOWN"

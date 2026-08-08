@@ -19,40 +19,45 @@ registry.register(
 analyzer = CapabilityAnalyzer()
 
 report = analyzer.analyze(
-    "Open WhatsApp and send Hello",
+    "Open WhatsApp and send Hello to Mayur",
     registry
 )
 
-print()
-
-print("Goal")
-
+print("\nGoal")
 print(report.goal)
 
-print()
-
-print("Existing Skills")
+print("\nExisting Skills")
 
 for skill in report.existing_skills:
 
     print("-", skill)
 
-print()
+print("\nMissing Capabilities")
 
-print("Missing")
+for item in report.missing_capabilities:
 
-for capability in report.missing_capabilities:
+    print("-", item)
 
-    print("-", capability)
-
-print()
-
-print("Suggested Skill")
+print("\nSuggested Skill")
 
 print(report.suggested_skill)
 
-print()
+print("\nComplexity")
 
-print("Status")
+print(report.estimated_complexity)
+
+print("\nDependencies")
+
+for dep in report.dependencies:
+
+    print("-", dep)
+
+print("\nPermissions")
+
+for permission in report.permissions:
+
+    print("-", permission)
+
+print("\nStatus")
 
 print(report.status)

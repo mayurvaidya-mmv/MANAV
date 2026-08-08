@@ -4,13 +4,18 @@ AI Manager
 Central interface to the local LLM.
 """
 
+import json
 import requests
 
 from config.settings import LOCAL_LLM_HOST
 from config.settings import LOCAL_MODEL
 from config.settings import DEBUG
 
-from ai.prompts import INTENT_CLASSIFIER_PROMPT
+from ai.prompts import (
+    INTENT_CLASSIFIER_PROMPT,
+    CAPABILITY_ANALYZER_PROMPT,
+)
+
 from knowledge.parser import KnowledgeParser
 from core.logger import Logger
 
@@ -57,7 +62,24 @@ class AIManager:
 
         )
 
+        if response.status_code != 200:
+
+            print()
+
+            print("=" * 80)
+
+            print("LM STUDIO ERROR")
+
+            print(response.status_code)
+
+            print(response.text)
+
+            print("=" * 80)
+
+            print()
+
         response.raise_for_status()
+
 
         data = response.json()
 
@@ -67,13 +89,13 @@ class AIManager:
 
             print()
 
-            print("=" * 50)
+            print("=" * 60)
 
             print("LM STUDIO RESPONSE")
 
             print(data)
 
-            print("=" * 50)
+            print("=" * 60)
 
             print()
 
@@ -91,6 +113,50 @@ class AIManager:
 
         ).lower()
 
+    def analyze_capability(self, goal):
+
+        result = self._chat(
+
+            CAPABILITY_ANALYZER_PROMPT,
+
+            goal
+
+        )
+
+        #
+        # Sometimes LLMs wrap JSON inside ```json
+        #
+
+        result = result.replace("```json", "")
+
+        result = result.replace("```", "")
+
+        result = result.strip()
+
+        try:
+
+            return json.loads(result)
+
+        except Exception as e:
+
+            self.logger.error(f"Capability JSON parsing failed: {e}")
+
+            self.logger.error(result)
+
+            return {
+
+                "missing_capabilities": [],
+
+                "suggested_skill": "UnknownSkill",
+
+                "estimated_complexity": "Unknown",
+
+                "dependencies": [],
+
+                "permissions": []
+
+            }
+
     def summarize(self, text):
 
         system_prompt = """
@@ -104,13 +170,6 @@ Topic: <ONE SHORT TOPIC>
 
 Summary:
 <concise engineering summary>
-
-Example:
-
-Topic: MQTT
-
-Summary:
-MQTT is a lightweight publish-subscribe protocol designed for IoT systems.
 
 Rules:
 - Topic must contain only the main subject.
