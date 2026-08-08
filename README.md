@@ -1,5 +1,14 @@
 # MANAS
 
+### Self-Extending AI Engineering Assistant
+
+[![MANAS CI](https://github.com/mayurvaidya-mmv/MANAV/actions/workflows/ci.yml/badge.svg?branch=approach-b)](https://github.com/mayurvaidya-mmv/MANAV/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+![LLM](https://img.shields.io/badge/LLM-Local%20%2F%20LM%20Studio-6E56CF)
+![Architecture](https://img.shields.io/badge/Architecture-Self--Extending%20V4-8A2BE2)
+![Status](https://img.shields.io/badge/Status-Active%20Development-orange)
+![GitHub](https://img.shields.io/badge/GitHub-approach--b-181717?logo=github&logoColor=white)
+
 ## Self-Extending AI Engineering Assistant
 
 MANAS is a local-first, LLM-powered AI assistant being engineered toward
