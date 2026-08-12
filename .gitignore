@@ -1,0 +1,31 @@
+# Environment / secrets
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+logs/
+
+# Runtime / generated audio
+*.wav
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
